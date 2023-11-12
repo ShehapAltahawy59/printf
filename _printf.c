@@ -31,6 +31,10 @@ int _printf(const char *format, ...)
 	handler_t *h;
 	handler_t *handlers;
 
+	if (format == NULL)
+	{
+		return (-1);
+	}
 	va_start(args, format);
 	handlers = create_handlers();
 	buffer = malloc(1024 * sizeof(char));

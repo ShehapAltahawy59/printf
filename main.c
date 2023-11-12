@@ -7,12 +7,11 @@
  *
  * Return: 0 on success, error code otherwise
  */
-int main(void)
-{
+int main(void){
 	int len, len2;
 
-	len = _printf("css%ccs%scscscs", 'T', "Test");
-	len2 = printf("css%ccs%scscscs", 'T', "Test");
+	len = _printf(NULL);
+	len2 = printf(NULL);
 	fflush(stdout);
 	if (len != len2)
 	{
