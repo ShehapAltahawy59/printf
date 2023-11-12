@@ -57,7 +57,6 @@ void handle_percent(va_list args, char **buffer, int *count)
  */
 void itoa(int value, char* str)
 {
-	char* start = str;
 	unsigned int n;
 	
 	if (value < 0)
