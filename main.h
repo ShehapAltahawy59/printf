@@ -18,4 +18,5 @@ void itoa(int value, char* str);
 void handle_int(va_list args, char** buffer, int* count);
 handler_t* create_handlers();
 int _printf(const char *format, ...);
+int _putchar(char c);
 #endif

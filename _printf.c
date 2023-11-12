@@ -25,7 +25,7 @@ handler_t *create_handlers(void)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count;
+	int count, i;
 	char *buffer;
 	const char *p = format;
 	handler_t *h;
@@ -56,7 +56,10 @@ int _printf(const char *format, ...)
 			}
 		}
 	}
-	write(1, buffer, count);
+	for (i = 0; i < count; i++)
+	{
+		_putchar(buffer[i]);
+	}
 	free(buffer);
 	va_end(args);
 	return (count);
