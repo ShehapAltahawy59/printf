@@ -50,8 +50,8 @@ int _printf(const char *format, ...)
 
 		if (*p == '\0')
 		{
-			buffer[count++] = '%';
-			continue;
+			count--;
+			break;
 		}
 		for (h = handlers; h->specifier != '\0'; h++)
 		{
