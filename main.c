@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "main.h"
 
 /**
@@ -7,11 +8,12 @@
  *
  * Return: 0 on success, error code otherwise
  */
-int main(void){
+int main(void)
+{
 	int len, len2;
 
-	len = _printf(NULL);
-	len2 = printf(NULL);
+	len = _printf("%d", INT_MIN);
+	len2 = printf("%d", INT_MIN);
 	fflush(stdout);
 	if (len != len2)
 	{
