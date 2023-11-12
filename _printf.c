@@ -1,25 +1,36 @@
 #include "main.h"
 
-int _printf(const char *format, ...) {
-    va_list args;
-    va_start(args, format);
-
-    handler_t handlers[] = {
+handler_t* create_handlers() {
+    static handler_t handlers[] = {
         {'c', handle_char},
         {'s', handle_string},
         {'%', handle_percent},
         {'d', handle_int},
         {'i', handle_int},
-        {'\0', NULL}  // End of array marker
+        {'\0', NULL}
     };
+    return handlers;
+}
 
-    char* buffer = malloc(1024 * sizeof(char));
+int _printf(const char *format, ...) {
+    va_list args;
+    int count;
+    char *buffer;
+    const char *p = format;
+    handler_t *h;
+    handler_t *handlers;
+
+
+    va_start(args,format);
+
+    handlers = create_handlers();
+
+    buffer = malloc(1024 * sizeof(char));
     if (buffer == NULL) {
         return -1;
     }
-
-    int count = 0;
-    for (const char *p = format; *p != '\0'; p++) {
+    count = 0;
+    for (; *p != '\0'; p++) {
         if (*p != '%') {
             buffer[count++] = *p;
             continue;
@@ -27,7 +38,7 @@ int _printf(const char *format, ...) {
 
         p++;
 
-        for (handler_t *h = handlers; h->specifier != '\0'; h++) {
+        for (h = handlers; h->specifier != '\0'; h++) {
             if (h->specifier == *p) {
                 h->handler(args, &buffer, &count);
                 break;

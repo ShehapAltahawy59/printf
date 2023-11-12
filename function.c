@@ -1,4 +1,5 @@
 #include "main.h"
+
 void handle_char(va_list args, char** buffer, int* count) {
     char c = va_arg(args, int);
     (*buffer)[(*count)++] = c;
@@ -6,18 +7,22 @@ void handle_char(va_list args, char** buffer, int* count) {
 
 void handle_string(va_list args, char** buffer, int* count) {
     char *s = va_arg(args, char *);
-    for (char *sp = s; *sp != '\0'; sp++) {
+    char *sp;
+
+    for (sp = s; *sp != '\0'; sp++) {
         (*buffer)[(*count)++] = *sp;
     }
 }
 
 void handle_percent(va_list args, char** buffer, int* count) {
-    (*buffer)[(*count)++] = '%';
+    	(void)args;
+	(*buffer)[(*count)++] = '%';
 }
 
 void itoa(int value, char* str) {
     char* start = str;
     int is_negative = 0;
+    char temp;
     if (value < 0) {
         is_negative = 1;
         value = -value;
@@ -31,7 +36,7 @@ void itoa(int value, char* str) {
     }
     *str-- = '\0';
     while (start < str) {
-        char temp = *start;
+        temp = *start;
         *start++ = *str;
         *str-- = temp;
     }
@@ -39,9 +44,10 @@ void itoa(int value, char* str) {
 
 void handle_int(va_list args, char** buffer, int* count) {
     int value = va_arg(args, int);
-    char str[12];  // Buffer to hold the string representation of the integer
+    char str[12];
+    char *sp;
     itoa(value, str);
-    for (char *sp = str; *sp != '\0'; sp++) {
+    for (sp = str; *sp != '\0'; sp++) {
         (*buffer)[(*count)++] = *sp;
     }
 }
