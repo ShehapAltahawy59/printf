@@ -55,11 +55,11 @@ void handle_percent(va_list args, char **buffer, int *count)
  * @str:the string
  * Return:void
  */
-void itoa(int value, char* str)
+void itoa(int value, char *str)
 {
 	unsigned int n;
 	char *p;
-	
+
 	if (value < 0)
 	{
 		*str++ = '-';
@@ -69,13 +69,11 @@ void itoa(int value, char* str)
 	{
 		n = value;
 	}
-
 	p = str;
 	do {
 		*p++ = '0' + (n % 10);
 		n /= 10;
 	} while (n != 0);
-
 	*p-- = '\0';
 	while (str < p)
 	{
