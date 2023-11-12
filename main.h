@@ -1,7 +1,10 @@
 #ifndef MAIN
 #define MAIN
-#include <stdarg.h>
+
+#include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
+#include <limits.h>
 #include <unistd.h>
 
 typedef void (*handler_func)(va_list args, char** buffer, int* count);
