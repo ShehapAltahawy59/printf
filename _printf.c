@@ -55,6 +55,11 @@ int _printf(const char *format, ...)
 				break;
 			}
 		}
+		if (h->specifier == '\0')
+		{
+			buffer[count++] = '%';
+			buffer[count++] = *p;
+		}
 	}
 	for (i = 0; i < count; i++)
 	{
