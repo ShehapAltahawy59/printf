@@ -25,6 +25,10 @@ void handle_string(va_list args, char **buffer, int *count)
 	char *s = va_arg(args, char *);
 	char *sp;
 
+	if (s == NULL)
+	{
+		s = "(null)";
+	}
 	for (sp = s; *sp != '\0'; sp++)
 	{
 		(*buffer)[(*count)++] = *sp;
